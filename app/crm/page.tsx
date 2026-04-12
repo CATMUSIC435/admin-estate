@@ -4,9 +4,10 @@ import React, { useState, useEffect } from "react";
 import { databases, APPWRITE_DATABASE_ID } from "../../lib/appwrite";
 import { Query } from "appwrite";
 import { PhoneCall, Search, MoreVertical, Edit3, Trash2 } from "lucide-react";
+import { CRMLead } from "../../types";
 
 export default function CRMLeads() {
-  const [leads, setLeads] = useState<any[]>([]);
+  const [leads, setLeads] = useState<CRMLead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function CRMLeads() {
         'crm_leads',
         [Query.orderDesc("$createdAt")]
       );
-      setLeads(res.documents);
+      setLeads(res.documents as unknown as CRMLead[]);
       setIsLoading(false);
     } catch(err) {
       console.error(err);

@@ -17,7 +17,7 @@ export async function GET() {
       COLLECTION_ID,
       [
         Query.orderDesc("$createdAt"), // Lấy tin nhắn mới nhất
-        Query.limit(1000) // Tối đa 1000 tin để test
+        Query.limit(200) // Giới hạn 200 tin để tối ưu memory
       ]
     );
 

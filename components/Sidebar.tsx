@@ -10,7 +10,7 @@ export default function Sidebar() {
   const menuItems = [
     { name: "Live Chat", path: "/chat", icon: MessageSquare },
     { name: "CRM Khách Hàng", path: "/crm", icon: Users2 },
-    { name: "CMS Bất Động Sản", path: "/cms", icon: Database },
+    { name: "Database & CMS", path: "/cms", icon: Database },
   ];
 
   return (
