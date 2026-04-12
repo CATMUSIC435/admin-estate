@@ -19,7 +19,7 @@ export default function AdminChatDashboard() {
   const currentThreadMsgs = selectedThread ? (threads[selectedThread] || []) : [];
 
   return (
-    <div className="flex h-full w-full bg-[#000] text-[#eee] font-sans rounded-tl-2xl overflow-hidden p-6 gap-6">
+    <div className="flex h-full w-full bg-[#000] text-[#eee] font-sans rounded-tl-2xl overflow-hidden p-4 md:p-6 gap-6 relative">
       <ChatSidebar 
         threads={threads}
         selectedThread={selectedThread}
@@ -32,6 +32,7 @@ export default function AdminChatDashboard() {
         selectedThread={selectedThread}
         currentThreadMsgs={currentThreadMsgs}
         error={error}
+        onBack={() => setSelectedThread(null)}
       />
     </div>
   );

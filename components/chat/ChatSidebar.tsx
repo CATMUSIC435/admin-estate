@@ -14,8 +14,8 @@ export function ChatSidebar({ threads, selectedThread, setSelectedThread, unread
   const threadIds = Object.keys(threads);
 
   return (
-    <div className="w-[350px] bg-[#111] border border-white/10 rounded-xl flex flex-col overflow-hidden shadow-2xl shrink-0">
-      <div className="p-6 bg-[#151515] border-b border-white/5 flex items-center gap-3">
+    <div className={`bg-[#111] border border-white/10 rounded-xl flex flex-col overflow-hidden shadow-2xl shrink-0 ${selectedThread ? 'hidden md:flex' : 'flex'} w-full md:w-[350px]`}>
+      <div className="p-4 md:p-6 bg-[#151515] border-b border-white/5 flex items-center gap-3">
         <ShieldAlert className="text-[#D4AF37]" />
         <h2 className="text-lg font-semibold uppercase tracking-widest text-[#D4AF37]">Admin Kênh Trực Tuyến</h2>
       </div>

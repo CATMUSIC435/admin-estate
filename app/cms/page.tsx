@@ -21,7 +21,8 @@ export default function CMSPage() {
         }
       `;
       // Note: NestJS GraphQL endpoint might need a specific shape, we might need a REST proxy or simple fetch
-      const response = await fetch("http://localhost:3001/graphql", {
+      const graphqlUrl = process.env.NEXT_PUBLIC_NEST_GRAPHQL_URL || "http://localhost:3001/graphql";
+      const response = await fetch(graphqlUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query }),
@@ -62,8 +63,8 @@ export default function CMSPage() {
   const orphans = getOrphanProperties();
 
   return (
-    <div className="h-full flex flex-col p-8 overflow-y-auto">
-      <div className="flex justify-between items-end mb-8">
+    <div className="h-full flex flex-col p-4 md:p-8 overflow-y-auto">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Trạm Kiển Soát Dữ Liệu (CMS)</h1>
           <p className="text-white/50 text-sm">Kiểm tra tính toàn vẹn dữ liệu từ Sanity sang Supabase</p>
@@ -73,7 +74,7 @@ export default function CMSPage() {
             <RefreshCw size={16} className={loading ? "animate-spin" : ""} /> Refresh
           </button>
           <a 
-            href="http://alizedanang.net/studio"
+            href={process.env.NEXT_PUBLIC_SANITY_STUDIO_URL || "http://alizedanang.net/studio"}
             target="_blank"
             rel="noreferrer"
             className="bg-[#D4AF37] text-black font-semibold px-4 py-2 rounded-lg text-sm flex items-center gap-2 hover:scale-105 transition-transform"

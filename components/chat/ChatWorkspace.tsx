@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { User, MessageCircle, Send, Paperclip } from "lucide-react";
+import { User, MessageCircle, Send, Paperclip, ChevronLeft } from "lucide-react";
 import { ChatMessage } from "../../types";
 import { storage } from "../../lib/appwrite";
 import { ID } from "appwrite";
@@ -8,9 +8,10 @@ interface ChatWorkspaceProps {
   selectedThread: string | null;
   currentThreadMsgs: ChatMessage[];
   error: string | null;
+  onBack: () => void;
 }
 
-export function ChatWorkspace({ selectedThread, currentThreadMsgs, error }: ChatWorkspaceProps) {
+export function ChatWorkspace({ selectedThread, currentThreadMsgs, error, onBack }: ChatWorkspaceProps) {
   const [inputText, setInputText] = useState("");
   const [attachment, setAttachment] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -77,7 +78,7 @@ export function ChatWorkspace({ selectedThread, currentThreadMsgs, error }: Chat
   };
 
   return (
-    <div className="flex-1 bg-[#222]/20 border border-white/10 rounded-xl flex flex-col overflow-hidden shadow-2xl relative">
+    <div className={`flex-1 bg-[#222]/20 border border-white/10 rounded-xl flex-col overflow-hidden shadow-2xl relative ${!selectedThread ? 'hidden md:flex' : 'flex'}`}>
       {error && (
         <div className="absolute top-0 w-full bg-red-500 text-white text-center text-sm py-2 z-50">
           {error}
@@ -86,9 +87,12 @@ export function ChatWorkspace({ selectedThread, currentThreadMsgs, error }: Chat
       
       {selectedThread ? (
         <>
-          <div className="p-6 bg-[#1A1A1A] border-b border-white/5 flex items-center justify-between shadow-md z-10">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-[#000] border border-[#D4AF37]/30 flex items-center justify-center">
+          <div className="p-4 md:p-6 bg-[#1A1A1A] border-b border-white/5 flex items-center justify-between shadow-md z-10 shrink-0">
+            <div className="flex items-center gap-3 md:gap-4">
+              <button onClick={onBack} className="md:hidden text-white/50 hover:text-white p-1">
+                 <ChevronLeft size={24} />
+              </button>
+              <div className="w-10 h-10 rounded-full bg-[#000] border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
                 <User className="text-[#D4AF37]" size={20} />
               </div>
               <div>

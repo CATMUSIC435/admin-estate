@@ -49,8 +49,8 @@ export default function CRMLeads() {
   };
 
   return (
-    <div className="h-full flex flex-col p-8">
-      <div className="flex justify-between items-end mb-8">
+    <div className="h-full flex flex-col p-4 md:p-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Quản Lý Kế Hoạch Chăm Sóc (CRM)</h1>
           <p className="text-white/50 text-sm">Danh sách khách hàng tiếp cận từ Live Chat</p>

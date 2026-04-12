@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Live Realtime Chat Admin Panel",
 };
 
-import Sidebar from "../components/Sidebar";
+import AdminLayoutWrapper from "../components/AdminLayoutWrapper";
 
 export default function RootLayout({
   children,
@@ -15,11 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased font-sans bg-black text-white h-screen flex overflow-hidden">
-        <Sidebar />
-        <main className="flex-1 overflow-hidden bg-[#0A0A0A]">
+      <body className="antialiased font-sans bg-black text-white">
+        <AdminLayoutWrapper>
           {children}
-        </main>
+        </AdminLayoutWrapper>
       </body>
     </html>
   );
