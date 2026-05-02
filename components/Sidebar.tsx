@@ -66,7 +66,7 @@ export default function Sidebar({ isOpen = true, setIsOpen }: SidebarProps) {
         </nav>
 
         <div className="p-6 border-t border-white/5 text-xs text-white/30 text-center">
-          Powered by Appwrite & Sanity
+          Powered by NestJS & Neon PostgreSQL
         </div>
       </div>
     </>
