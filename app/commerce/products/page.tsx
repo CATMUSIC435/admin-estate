@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Package, RefreshCw, ExternalLink, Search, Tag, Plus } from "lucide-react";
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000";
+const MEDUSA_API_URL = "/api/medusa";
 
 interface Product {
   id: string;
@@ -34,7 +35,7 @@ export default function ProductsPage() {
 
   const getToken = async () => {
     if (authToken) return authToken;
-    const res = await fetch(`${MEDUSA_URL}/auth/user/emailpass`, {
+    const res = await fetch(`${MEDUSA_API_URL}/auth/user/emailpass`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: "admin@alize-danang.com", password: "AlizeDaNang2026!" }),
@@ -49,7 +50,7 @@ export default function ProductsPage() {
     setError("");
     try {
       const token = await getToken();
-      const res = await fetch(`${MEDUSA_URL}/admin/products?limit=100&fields=*variants,*categories,*variants.prices`, {
+      const res = await fetch(`${MEDUSA_API_URL}/admin/products?limit=100&fields=*variants,*categories,*variants.prices`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("Lỗi kết nối Medusa. Hãy chạy: npx medusa develop");

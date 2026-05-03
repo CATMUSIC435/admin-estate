@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000";
+const MEDUSA_API_URL = "/api/medusa"; // Proxy qua Next.js Backend để tránh CORS
 const MEDUSA_ADMIN_URL = process.env.NEXT_PUBLIC_MEDUSA_ADMIN_URL || `${MEDUSA_URL}/app`;
 
 type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled";
@@ -51,12 +52,12 @@ export default function CommerceDashboard() {
     setLoading(true);
     try {
       // Kiểm tra health
-      const health = await fetch(`${MEDUSA_URL}/health`);
+      const health = await fetch(`${MEDUSA_API_URL}/health`);
       if (!health.ok) throw new Error("Medusa offline");
       setMedusaOnline(true);
 
       // Login để lấy token
-      const loginRes = await fetch(`${MEDUSA_URL}/auth/user/emailpass`, {
+      const loginRes = await fetch(`${MEDUSA_API_URL}/auth/user/emailpass`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -75,21 +76,21 @@ export default function CommerceDashboard() {
       };
 
       // Fetch bookings
-      const bookingsRes = await fetch(`${MEDUSA_URL}/admin/bookings?limit=10`, { headers });
+      const bookingsRes = await fetch(`${MEDUSA_API_URL}/admin/bookings?limit=10`, { headers });
       if (bookingsRes.ok) {
         const { bookings: b } = await bookingsRes.json();
         setBookings(b || []);
       }
 
       // Fetch orders
-      const ordersRes = await fetch(`${MEDUSA_URL}/admin/orders?limit=5`, { headers });
+      const ordersRes = await fetch(`${MEDUSA_API_URL}/admin/orders?limit=5`, { headers });
       if (ordersRes.ok) {
         const { orders: o } = await ordersRes.json();
         setOrders(o || []);
       }
 
       // Fetch products count
-      const productsRes = await fetch(`${MEDUSA_URL}/admin/products?limit=100`, { headers });
+      const productsRes = await fetch(`${MEDUSA_API_URL}/admin/products?limit=100`, { headers });
       if (productsRes.ok) {
         const { products: p } = await productsRes.json();
         setProducts(p || []);

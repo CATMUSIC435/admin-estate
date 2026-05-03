@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000";
+const MEDUSA_API_URL = "/api/medusa";
 
 type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled";
 
@@ -69,14 +70,18 @@ export default function BookingsPage() {
 
   const getToken = async () => {
     if (authToken) return authToken;
-    const res = await fetch(`${MEDUSA_URL}/auth/user/emailpass`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: "admin@alize-danang.com", password: "AlizeDaNang2026!" }),
-    });
-    const data = await res.json();
-    setAuthToken(data.token);
-    return data.token;
+    try {
+      const res = await fetch(`${MEDUSA_API_URL}/auth/user/emailpass`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: "admin@alize-danang.com", password: "AlizeDaNang2026!" }),
+      });
+      const data = await res.json();
+      setAuthToken(data.token);
+      return data.token;
+    } catch (e) {
+      return null;
+    }
   };
 
   const fetchBookings = useCallback(async () => {
@@ -88,7 +93,7 @@ export default function BookingsPage() {
       if (filterStatus !== "all") params.set("status", filterStatus);
       if (filterType !== "all") params.set("service_type", filterType);
 
-      const res = await fetch(`${MEDUSA_URL}/admin/bookings?${params}`, {
+      const res = await fetch(`${MEDUSA_API_URL}/admin/bookings?${params}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("Lỗi kết nối Medusa. Hãy chạy: npx medusa develop");
@@ -115,8 +120,8 @@ export default function BookingsPage() {
     setSaving(true);
     try {
       const token = await getToken();
-      const res = await fetch(`${MEDUSA_URL}/admin/bookings/${selectedBooking.id}`, {
-        method: "PUT",
+      const res = await fetch(`${MEDUSA_API_URL}/admin/bookings/${selectedBooking.id}`, {
+        method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({
           status: editStatus,
@@ -137,8 +142,8 @@ export default function BookingsPage() {
   const handleQuickStatus = async (id: string, status: BookingStatus) => {
     try {
       const token = await getToken();
-      await fetch(`${MEDUSA_URL}/admin/bookings/${id}`, {
-        method: "PUT",
+      await fetch(`${MEDUSA_API_URL}/admin/bookings/${id}`, {
+        method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ status }),
       });
