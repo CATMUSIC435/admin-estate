@@ -121,7 +121,7 @@ export default function BookingsPage() {
     try {
       const token = await getToken();
       const res = await fetch(`${MEDUSA_API_URL}/admin/bookings/${selectedBooking.id}`, {
-        method: "POST",
+        method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({
           status: editStatus,
@@ -143,7 +143,7 @@ export default function BookingsPage() {
     try {
       const token = await getToken();
       await fetch(`${MEDUSA_API_URL}/admin/bookings/${id}`, {
-        method: "POST",
+        method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ status }),
       });
