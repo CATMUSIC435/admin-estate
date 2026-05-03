@@ -123,11 +123,18 @@ export default function CommerceDashboard() {
             <h3 className="text-xl font-bold text-red-400 mb-2">Medusa Server Chưa Chạy</h3>
             <p className="text-white/60 mb-4">Cần khởi động Medusa backend để sử dụng tính năng Commerce.</p>
             <div className="bg-black/40 rounded-lg p-4 font-mono text-sm text-green-400">
-              <p className="text-white/40 text-xs mb-1"># Mở terminal mới, chạy lệnh:</p>
-              <p>cd medusa\apps\backend</p>
-              <p>npx medusa develop</p>
+              <p className="text-white/40 text-xs mb-1"># Nếu chạy ở môi trường Local (Máy tính cá nhân):</p>
+              <p>cd medusa\apps\backend && npx medusa develop</p>
+              <br />
+              <p className="text-white/40 text-xs mb-1"># Backend URL hiện tại đang trỏ tới:</p>
+              <p>{MEDUSA_URL}</p>
             </div>
-            <p className="text-white/40 text-xs mt-3">Server sẽ chạy tại: http://localhost:9000</p>
+            <div className="mt-4 flex items-center gap-4">
+              <p className="text-white/40 text-xs">Vui lòng kiểm tra lại cấu hình biến môi trường NEXT_PUBLIC_MEDUSA_URL.</p>
+              <a href={MEDUSA_ADMIN_URL} target="_blank" rel="noopener noreferrer" className="bg-[#D4AF37]/20 text-[#D4AF37] px-3 py-1.5 rounded text-xs font-semibold hover:bg-[#D4AF37]/40">
+                Truy cập Medusa Admin
+              </a>
+            </div>
           </div>
         </div>
 
