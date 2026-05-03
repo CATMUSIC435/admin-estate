@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000";
+const MEDUSA_ADMIN_URL = process.env.NEXT_PUBLIC_MEDUSA_ADMIN_URL || `${MEDUSA_URL}/app`;
 
 type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled";
 
@@ -166,7 +167,7 @@ export default function CommerceDashboard() {
             <RefreshCw size={16} className={loading ? "animate-spin" : ""} /> Refresh
           </button>
           <a
-            href={`${MEDUSA_URL}/app`}
+            href={MEDUSA_ADMIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#D4AF37] text-black font-semibold px-4 py-2 rounded-lg text-sm flex items-center gap-2 hover:scale-105 transition-transform"
@@ -251,8 +252,8 @@ export default function CommerceDashboard() {
               {[
                 { label: "Đặt Lịch Mới", href: "/commerce/bookings", icon: CalendarCheck, badge: pendingCount > 0 ? `${pendingCount} mới` : null },
                 { label: "Sản Phẩm", href: "/commerce/products", icon: Package, badge: `${products.length}` },
-                { label: "Đơn Hàng", href: `${MEDUSA_URL}/app/orders`, icon: ShoppingBag, external: true },
-                { label: "Khách Hàng", href: `${MEDUSA_URL}/app/customers`, icon: Users, external: true },
+                { label: "Đơn Hàng", href: `${MEDUSA_ADMIN_URL}/orders`, icon: ShoppingBag, external: true },
+                { label: "Khách Hàng", href: `${MEDUSA_ADMIN_URL}/customers`, icon: Users, external: true },
               ].map((link, i) => (
                 link.external ? (
                   <a key={i} href={link.href} target="_blank" rel="noopener noreferrer"
