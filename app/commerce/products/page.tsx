@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Package, RefreshCw, ExternalLink, Search, Tag, Plus } from "lucide-react";
 
 const MEDUSA_URL = process.env.NEXT_PUBLIC_MEDUSA_URL || "http://localhost:9000";
+const MEDUSA_ADMIN_URL = process.env.NEXT_PUBLIC_MEDUSA_ADMIN_URL || "https://admin-shop.alizedanang.net";
 const MEDUSA_API_URL = "/api/medusa";
 
 interface Product {
@@ -82,7 +83,7 @@ export default function ProductsPage() {
             <RefreshCw size={16} className={loading ? "animate-spin" : ""} /> Refresh
           </button>
           <a
-            href={`${MEDUSA_URL}/app/products/create`}
+            href={`${MEDUSA_ADMIN_URL}/app/products/create`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#D4AF37] text-black font-semibold px-4 py-2 rounded-lg text-sm flex items-center gap-2 hover:scale-105 transition-transform"
@@ -115,7 +116,7 @@ export default function ProductsPage() {
         <ExternalLink size={16} className="text-blue-400 flex-shrink-0" />
         <span className="text-white/60">
           Để quản lý sản phẩm đầy đủ (ảnh, inventory, pricing), dùng{" "}
-          <a href={`${MEDUSA_URL}/app/products`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+          <a href={`${MEDUSA_ADMIN_URL}/app/products`} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
             Medusa Admin Panel
           </a>
         </span>
@@ -194,7 +195,7 @@ export default function ProductsPage() {
                 </div>
 
                 <a
-                  href={`${MEDUSA_URL}/app/products/${product.id}`}
+                  href={`${MEDUSA_ADMIN_URL}/app/products/${product.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 w-full flex items-center justify-center gap-2 py-2 rounded-lg border border-white/10 text-white/50 hover:text-white hover:border-[#D4AF37]/50 text-xs transition-all opacity-0 group-hover:opacity-100"
@@ -212,7 +213,7 @@ export default function ProductsPage() {
           <Package size={48} className="mx-auto mb-4 opacity-20" />
           <p className="mb-2">Chưa có sản phẩm nào</p>
           <p className="text-xs">Chạy seed script hoặc thêm sản phẩm từ Medusa Admin</p>
-          <a href={`${MEDUSA_URL}/app/products/create`} target="_blank" rel="noopener noreferrer"
+          <a href={`${MEDUSA_ADMIN_URL}/app/products/create`} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-4 text-[#D4AF37] text-sm hover:underline">
             <Plus size={14} /> Thêm sản phẩm đầu tiên
           </a>
