@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-import { FileText, RefreshCw, Plus, Pencil, Trash2, X, Save, AlertTriangle, ExternalLink } from "lucide-react";
+import { FileText, RefreshCw, Plus, Pencil, Trash2, X, Save, AlertTriangle, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { useToast } from "../../components/ui/Toast";
 
 // ==================== MODAL COMPONENT ====================
@@ -56,6 +56,8 @@ export default function BlogManagementPage() {
   const [modalMode, setModalMode] = useState<"create" | "edit">("create");
   const [editForm, setEditForm] = useState<any>({});
   const [saving, setSaving] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
   const { toast } = useToast();
 
   const fetchData = useCallback(async () => {
@@ -144,6 +146,9 @@ export default function BlogManagementPage() {
     }
   };
 
+  const totalPages = Math.ceil(blogs.length / itemsPerPage);
+  const paginatedBlogs = blogs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
   return (
     <div className="h-full flex flex-col p-4 md:p-8 overflow-y-auto">
       {/* HEADER */}
@@ -194,7 +199,7 @@ export default function BlogManagementPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {blogs.map((b: any) => {
+                {paginatedBlogs.map((b: any) => {
                   const title = b.title?.rendered || "No Title";
                   const imgUrl = b._embedded?.['wp:featuredmedia']?.[0]?.source_url;
                   
@@ -247,6 +252,32 @@ export default function BlogManagementPage() {
               </div>
             )}
           </div>
+          
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between mt-4 px-2">
+              <div className="text-xs text-white/40">
+                Hiển thị <span className="text-white">{(currentPage - 1) * itemsPerPage + 1}</span> - <span className="text-white">{Math.min(currentPage * itemsPerPage, blogs.length)}</span> trên tổng <span className="text-white">{blogs.length}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="p-1.5 rounded-lg border border-white/10 text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <span className="text-xs text-white/60">Trang {currentPage} / {totalPages}</span>
+                <button 
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="p-1.5 rounded-lg border border-white/10 text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

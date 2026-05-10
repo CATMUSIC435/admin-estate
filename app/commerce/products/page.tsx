@@ -154,7 +154,7 @@ export default function ProductsPage() {
                 </div>
 
                 {product.description && (
-                  <p className="text-white/40 text-xs mb-3 line-clamp-2">{product.description}</p>
+                  <div className="text-white/40 text-xs mb-3 line-clamp-2 prose prose-invert max-w-none prose-p:m-0" dangerouslySetInnerHTML={{ __html: product.description }} />
                 )}
 
                 {/* Categories */}

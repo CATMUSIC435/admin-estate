@@ -146,6 +146,12 @@ export default function PropertiesPage() {
           <FormInput label="Phòng tắm" value={editForm.baths} onChange={(v) => setEditForm({ ...editForm, baths: Number(v) })} type="number" />
         </div>
         <FormInput label="Mô tả" value={editForm.description} onChange={(v) => setEditForm({ ...editForm, description: v })} isTextarea />
+        {editForm.description && (
+          <div className="mt-2 mb-4 p-3 bg-black/50 border border-white/10 rounded-lg max-h-40 overflow-y-auto">
+            <p className="text-[10px] text-white/30 uppercase tracking-widest mb-2 font-semibold">Xem trước nội dung HTML:</p>
+            <div className="text-sm text-white/70 prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: editForm.description }} />
+          </div>
+        )}
         <FormInput label="Ảnh đại diện (URL)" value={editForm.img_url} onChange={(v) => setEditForm({ ...editForm, img_url: v })} />
         
         <div className="flex gap-3 mt-6 pt-4 border-t border-white/10">
