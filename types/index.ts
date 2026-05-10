@@ -48,5 +48,4 @@ export interface SyncData {
   locations: LocationModel[];
   projects: ProjectModel[];
   properties: PropertyModel[];
-  blogs: BlogModel[];
 }

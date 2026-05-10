@@ -5,10 +5,12 @@ import { databases, APPWRITE_DATABASE_ID } from "../../lib/appwrite";
 import { Query } from "appwrite";
 import { PhoneCall, Search, MoreVertical, Edit3, Trash2 } from "lucide-react";
 import { CRMLead } from "../../types";
+import { useToast } from "../../components/ui/Toast";
 
 export default function CRMLeads() {
   const [leads, setLeads] = useState<CRMLead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     fetchLeads();
@@ -34,8 +36,9 @@ export default function CRMLeads() {
     try {
       await databases.deleteDocument(APPWRITE_DATABASE_ID, 'crm_leads', id);
       setLeads(leads.filter(l => l.$id !== id));
+      toast("Đã xóa khách hàng", "success");
     } catch(err) {
-      alert("Lỗi khi xóa!");
+      toast("Lỗi khi xóa!", "error");
     }
   };
 
@@ -43,8 +46,9 @@ export default function CRMLeads() {
     try {
       await databases.updateDocument(APPWRITE_DATABASE_ID, 'crm_leads', id, { status: newStatus });
       setLeads(leads.map(l => l.$id === id ? {...l, status: newStatus} : l));
+      toast("Đã cập nhật trạng thái", "success");
     } catch(err) {
-      alert("Lỗi cập nhật!");
+      toast("Lỗi cập nhật!", "error");
     }
   };
 
