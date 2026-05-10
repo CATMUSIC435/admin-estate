@@ -46,8 +46,9 @@ export default function Sidebar({ isOpen = true, setIsOpen }: SidebarProps) {
     {
       label: "THƯƠNG MẠI (MEDUSA)",
       items: [
-        { name: "Commerce Board", path: "/commerce", icon: ShoppingBag },
-        { name: "Xử Lý Đặt Lịch", path: "/commerce/bookings", icon: CalendarCheck },
+        { name: "Commerce Board", path: "/commerce", icon: LayoutDashboard },
+        { name: "Sản Phẩm (Medusa)", path: "/commerce/products", icon: Package },
+        { name: "Đơn Đặt Chỗ", path: "/commerce/bookings", icon: CalendarCheck },
       ],
     },
     {
