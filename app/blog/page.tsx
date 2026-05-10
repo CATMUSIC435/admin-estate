@@ -215,22 +215,22 @@ export default function BlogManagementPage() {
                               </div>
                           </div>
                       </td>
-                      <td className="py-3 text-white/50 font-mono text-xs">{b.slug}</td>
+                      <td className="py-3 text-white/50 font-mono text-xs max-w-[150px] truncate" title={b.slug}>{b.slug}</td>
                       <td className="py-3 text-white/60">
                         <span className={`px-2 py-1 rounded text-[10px] uppercase tracking-wider ${b.status === 'publish' ? 'bg-green-500/10 text-green-400' : 'bg-yellow-500/10 text-yellow-400'}`}>
                           {b.status}
                         </span>
                       </td>
                       <td className="py-3 pr-2">
-                        <div className="flex gap-1 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-                          <a href={b.link} target="_blank" rel="noopener noreferrer" className="p-1.5 hover:bg-white/10 rounded-lg text-white/50 hover:text-[#D4AF37]" title="Xem trên WordPress">
-                              <ExternalLink size={16} />
+                        <div className="flex gap-2 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                          <a href={b.link} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-lg text-white/50 hover:text-[#D4AF37]" title="Xem trên WordPress">
+                              <ExternalLink size={20} />
                           </a>
-                          <button onClick={() => handleEdit(b)} className="p-1.5 hover:bg-white/10 rounded-lg text-white/50 hover:text-blue-400" title="Chỉnh sửa">
-                              <Pencil size={16} />
+                          <button onClick={() => handleEdit(b)} className="p-2 hover:bg-white/10 rounded-lg text-white/50 hover:text-blue-400" title="Chỉnh sửa">
+                              <Pencil size={20} />
                           </button>
-                          <button onClick={() => handleDelete(b.id)} className="p-1.5 hover:bg-red-500/10 rounded-lg text-white/50 hover:text-red-400" title="Xóa">
-                              <Trash2 size={16} />
+                          <button onClick={() => handleDelete(b.id)} className="p-2 hover:bg-red-500/10 rounded-lg text-white/50 hover:text-red-400" title="Xóa">
+                              <Trash2 size={20} />
                           </button>
                         </div>
                       </td>

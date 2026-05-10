@@ -114,8 +114,8 @@ export default function AdminDashboard() {
       </div>
 
       {errors.length > 0 && (
-        <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-xl mb-8 flex items-start gap-3">
-          <AlertTriangle className="text-red-400 mt-1" size={20} />
+        <div className="bg-red-500/10 border border-red-500/20 p-3 md:p-4 rounded-xl mb-8 flex flex-col sm:flex-row items-start gap-3">
+          <AlertTriangle className="text-red-400 mt-1 shrink-0" size={20} />
           <div>
             <h3 className="text-red-400 font-semibold mb-1">Cảnh báo Hệ thống</h3>
             <ul className="text-white/60 text-sm list-disc pl-4 space-y-1">
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
       <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-widest flex items-center gap-2">
         <Building className="text-[#D4AF37]" size={20} /> Bất Động Sản (CMS)
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <StatCard title="Dự Án" value={stats.projects} icon={Building} link="/cms" loading={loading} />
         <StatCard title="Sản Phẩm BĐS" value={stats.properties} icon={Home} link="/cms" loading={loading} />
         <StatCard title="Khu Vực" value={stats.locations} icon={MapPin} link="/cms" loading={loading} />
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
       <h2 className="text-lg font-bold text-white mb-4 uppercase tracking-widest flex items-center gap-2 mt-4">
         <ShoppingBag className="text-[#D4AF37]" size={20} /> Thương Mại (Medusa)
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <StatCard title="Đơn Hàng" value={commerceStats.orders} icon={ShoppingBag} link={MEDUSA_ADMIN_URL + "/orders"} external loading={loading} />
         <StatCard title="Đặt Lịch DV" value={commerceStats.bookings} icon={CalendarCheck} link="/commerce" loading={loading} />
         <StatCard title="Sản Phẩm" value={commerceStats.products} icon={Package} link="/commerce" loading={loading} />
@@ -149,7 +149,7 @@ export default function AdminDashboard() {
 
       {/* QUICK ACTIONS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-        <div className="bg-[#111] border border-white/5 rounded-2xl p-6">
+        <div className="bg-[#111] border border-white/5 rounded-xl sm:rounded-2xl p-6">
           <h3 className="text-lg font-bold text-white mb-4">Lối Tắt CMS</h3>
           <div className="space-y-3">
             <QuickLink href="/cms" icon={Building} title="Quản lý Kho BĐS" desc="Thêm/sửa dự án, căn hộ" />
@@ -158,7 +158,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-[#111] border border-white/5 rounded-2xl p-6">
+        <div className="bg-[#111] border border-white/5 rounded-xl sm:rounded-2xl p-6">
           <h3 className="text-lg font-bold text-white mb-4">Lối Tắt Thương Mại</h3>
           <div className="space-y-3">
             <QuickLink href="/commerce/bookings" icon={CalendarCheck} title="Xử lý Lịch hẹn" desc="Phê duyệt, hủy lịch khách hàng" />
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
 
 function StatCard({ title, value, icon: Icon, link, external, loading }: any) {
   const content = (
-    <div className="bg-[#111] border border-white/5 rounded-2xl p-5 relative overflow-hidden transition-all hover:border-[#D4AF37]/50 hover:bg-white/5 group h-full flex flex-col justify-between">
+    <div className="bg-[#111] border border-white/5 rounded-xl sm:rounded-2xl p-5 relative overflow-hidden transition-all hover:border-[#D4AF37]/50 hover:bg-white/5 group h-full flex flex-col justify-between">
       <Icon className="text-[#D4AF37]/20 absolute -right-3 -bottom-3 transition-transform group-hover:scale-110" size={64} />
       <h4 className="text-white/50 mb-2 font-medium text-sm">{title}</h4>
       <p className="text-3xl font-bold text-white">

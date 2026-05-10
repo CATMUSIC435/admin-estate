@@ -95,7 +95,7 @@ export default function Sidebar({ isOpen = true, setIsOpen }: SidebarProps) {
           )}
         </div>
 
-        <nav className="flex-1 flex flex-col gap-1 px-4 overflow-y-auto">
+        <nav className="flex-1 flex flex-col gap-1 px-4 overflow-y-auto custom-scrollbar">
           {menuGroups.map((group) => {
             const isGroupOpen = group.collapsible ? openGroups[group.label] !== false : true;
             
@@ -117,7 +117,9 @@ export default function Sidebar({ isOpen = true, setIsOpen }: SidebarProps) {
                 
                 <div className={`overflow-hidden transition-all duration-300 ${isGroupOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                   {group.items.map((item) => {
-                    const isActive = pathname === item.path || (item.path !== "/" && pathname.startsWith(item.path));
+                    const isActive = item.path === "/" 
+                      ? pathname === "/" 
+                      : pathname === item.path || pathname.startsWith(item.path + '/');
                     return (
                       <Link
                         key={item.path}

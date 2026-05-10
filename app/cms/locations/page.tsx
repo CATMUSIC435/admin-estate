@@ -97,9 +97,9 @@ export default function LocationsPage() {
       header: "Thao Tác", 
       className: "text-right w-24",
       render: (l: LocationModel) => (
-        <div className="flex gap-1 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-          <button onClick={() => handleEdit(l)} className="p-1.5 hover:bg-white/10 rounded-lg text-white/50 hover:text-[#D4AF37]"><Pencil size={14} /></button>
-          <button onClick={() => handleDelete(l.id)} className="p-1.5 hover:bg-red-500/10 rounded-lg text-white/50 hover:text-red-400"><Trash2 size={14} /></button>
+        <div className="flex gap-2 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+          <button onClick={() => handleEdit(l)} className="p-2 hover:bg-white/10 rounded-lg text-white/50 hover:text-[#D4AF37]"><Pencil size={20} /></button>
+          <button onClick={() => handleDelete(l.id)} className="p-2 hover:bg-red-500/10 rounded-lg text-white/50 hover:text-red-400"><Trash2 size={20} /></button>
         </div>
       )
     }

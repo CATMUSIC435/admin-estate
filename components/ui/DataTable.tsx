@@ -88,7 +88,7 @@ export function DataTable<T>({
       )}
 
       {/* Table Container */}
-      <div className="bg-[#111] border border-white/5 rounded-2xl flex-1 overflow-hidden flex flex-col">
+      <div className="bg-[#111] border border-white/5 rounded-lg sm:rounded-2xl flex-1 overflow-hidden flex flex-col min-w-0">
         {filteredData.length === 0 ? (
           <div className="text-center py-16 text-white/30 flex-1 flex flex-col items-center justify-center">
             <EmptyIcon size={48} className="mx-auto mb-4 opacity-30" />
