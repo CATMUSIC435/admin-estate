@@ -6,7 +6,8 @@ import { useState } from "react";
 import { 
   MessageSquare, Users2, Database, LayoutDashboard, X, 
   ShoppingBag, CalendarCheck, Package, ExternalLink, 
-  Building, FileText, ChevronDown, MapPin, Home, Settings 
+  Building, FileText, ChevronDown, MapPin, Home, Settings,
+  Coins, PhoneCall, TrendingUp
 } from "lucide-react";
 
 interface SidebarProps {
@@ -48,14 +49,22 @@ export default function Sidebar({ isOpen = true, setIsOpen }: SidebarProps) {
       items: [
         { name: "Commerce Board", path: "/commerce", icon: LayoutDashboard },
         { name: "Sản Phẩm (Medusa)", path: "/commerce/products", icon: Package },
+        { name: "Yêu Cầu Tư Vấn", path: "/commerce/consultations", icon: PhoneCall },
         { name: "Đơn Đặt Chỗ", path: "/commerce/bookings", icon: CalendarCheck },
       ],
     },
     {
       label: "NỘI DUNG & HỖ TRỢ",
       items: [
-        { name: "Quản Lý Blog", path: "/blog", icon: FileText },
+        { name: "Tin Tức BĐS", path: "/blog", icon: FileText },
+        { name: "Tin Tức Tài Chính (WP)", path: "/blog/finance", icon: TrendingUp },
         { name: "Live Chat", path: "/chat", icon: MessageSquare },
+      ],
+    },
+    {
+      label: "WEB3 & BLOCKCHAIN",
+      items: [
+        { name: "Tài Sản Token Hóa", path: "/web3", icon: Coins },
       ],
     },
     {
