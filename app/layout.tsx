@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Admin Chat Dashboard",
-  description: "Live Realtime Chat Admin Panel",
+  title: "CMS Admin — ALIZE Real Estate",
+  description: "Quản trị nội dung, dự án, bất động sản và khách hàng tiềm năng.",
 };
 
 import AdminLayoutWrapper from "../components/AdminLayoutWrapper";
